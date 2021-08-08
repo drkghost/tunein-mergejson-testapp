@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Http;
-using Microsoft.Extensions.Configuration;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MergeJson
+namespace MergeJson.Manager
 {
-    public class Manager
+    public class HttpManager : IHttpManager
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfigurationRoot _config;
-
-        public Manager(HttpClient httpClient, IConfigurationRoot config)
+        
+        public HttpManager(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _config = config;
         }
 
         public async Task<string> GetMergedJson()

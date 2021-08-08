@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeJson", "MergeJson\MergeJson.csproj", "{D6EFEA6D-1B7A-4319-8D6F-87BD2F790A87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeJson.UnitTests", "MergeJson.UnitTests\MergeJson.UnitTests.csproj", "{6A6CD601-BAD8-4931-B5EA-6CC71BB31B44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeJson.UnitTests", "MergeJson.UnitTests\MergeJson.UnitTests.csproj", "{6A6CD601-BAD8-4931-B5EA-6CC71BB31B44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tunein.API.Fake", "Tunein.API.Fake\Tunein.API.Fake.csproj", "{3475B3CB-7A3B-45EB-8AD7-8AA9491660A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6A6CD601-BAD8-4931-B5EA-6CC71BB31B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6CD601-BAD8-4931-B5EA-6CC71BB31B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A6CD601-BAD8-4931-B5EA-6CC71BB31B44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3475B3CB-7A3B-45EB-8AD7-8AA9491660A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3475B3CB-7A3B-45EB-8AD7-8AA9491660A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3475B3CB-7A3B-45EB-8AD7-8AA9491660A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3475B3CB-7A3B-45EB-8AD7-8AA9491660A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

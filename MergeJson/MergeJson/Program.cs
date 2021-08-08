@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Memory;
-using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 using System.Net.Http;
 using MergeJson.Algorithm;
+using MergeJson.Extensions;
+using MergeJson.Manager;
 
 namespace MergeJson
 {
@@ -19,26 +19,28 @@ namespace MergeJson
             ConfigureServices(serviceCollection);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var json =
-                "{\"ranked\":[{\"priority\":2,\"vals\":{\"timeout\":\"3s\",\"num_threads\":500,\"buffer_size\":4000,\"use_sleep\":true}}," +
-                "{\"priority\":1,\"vals\":{\"timeout\":\"2s\",\"startup_delay\":\"2m\",\"skip_percent_active\":0.2}}," +
-                "{\"priority\":0,\"vals\":{\"num_threads\":300,\"buffer_size\":3000,\"label\":\"testing\"}}]}";
-
-
+            var manager = serviceProvider.GetService<IHttpManager>();
             var mergeJson = serviceProvider.GetService<IMergeAlgorithm>();
-            mergeJson.Merge(json);
+
+            var json = manager.GetMergedJson().Result;
+            var result = mergeJson.Merge(json);
+            Console.WriteLine(result.ToDebugString());
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
             configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-                .AddJsonFile("appsettings.json", false)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{environmentName}.json", true, true)
                 .Build();
             serviceCollection
                 .AddSingleton<IConfigurationRoot>(configuration)
-                .AddSingleton<IMergeAlgorithm, MergeAlgorithm>();
-
+                .AddSingleton<IMergeAlgorithm, MergeAlgorithm>()
+                .AddSingleton<IHttpManager, HttpManager>();
+            
             var httpClient = new HttpClient() { BaseAddress = new Uri(configuration.GetSection("BaseAddress").Value) };
             serviceCollection.AddSingleton<HttpClient>(httpClient);
         }

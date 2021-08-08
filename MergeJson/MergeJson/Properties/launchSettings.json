@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "MergeJson": {
+      "commandName": "Project"
+    },
+    "MergeJson.Dev": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
