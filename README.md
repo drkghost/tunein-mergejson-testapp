@@ -1,6 +1,6 @@
 # tunein-mergejson-testapp
 This is a simple console application, for testing existing API endpoint.
-The result of the program - merged json object according to the following rules.
+The result of the program - merged json object.
 ***
 In order to test it with real api:
 ```sh
