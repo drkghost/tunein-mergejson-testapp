@@ -19,6 +19,11 @@ namespace MergeJson.Algorithm
         public Dictionary<string, object> Merge(string serializedJson)
         {
             _logger.LogInformation($"Processing serialized json object: {serializedJson}");
+            if (string.IsNullOrEmpty(serializedJson))
+            {
+                return null;
+            }
+
             var data = JsonConvert.DeserializeObject<Root>(serializedJson);
             var orderedData = data.Ranked.OrderBy(x => x.Priority);
             var result = new Dictionary<string, object>();
